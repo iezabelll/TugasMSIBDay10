@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Day 10</title>
+    <style>
+
+        table {
+            width: 50%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid darkgray;
+        }
+
+        th, td {
+            padding: 12px;
+        }
+
+        th {
+            background-color: lightblue;
+            color: black;
+        }
+
+
+    </style>
+</head>
+<body>
+    <h2>Data Siswa</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Nilai</th>
+                <th>Keterangan</th>
+                <th>Grade</th>
+                <th>Predikat</th>
+            </tr>
+        </thead>
+        <tbody id="tabel-siswa"></tbody>
+    </table>
+
+    <script>
+        let s1 = {'nama': 'Ci Rusdi', 'nilai': 81};
+        let s2 = {'nama': 'Amba Sigh', 'nilai': 98};
+        let s3 = {'nama': 'Cik Fuad', 'nilai': 74};
+        let s4 = {'nama': 'Adit Buzz Cut', 'nilai': 53};
+        let s5 = {'nama': 'Mas Taqeem', 'nilai': 30};
+
+        let siswa = [s1, s2, s3, s4, s5]; 
+
+        function getGrade(nilai) {
+            if (nilai >= 85) return { grade: 'A', predikat: 'Sangat Baik' };
+            else if (nilai >= 75) return { grade: 'B', predikat: 'Baik' };
+            else if (nilai >= 60) return { grade: 'C', predikat: 'Cukup' };
+            else if (nilai >= 30) return { grade: 'D', predikat: 'Kurang' };
+            else return { grade: 'E', predikat: 'Sangat Kurang' };
+        }
+
+        let tabelSiswa = document.getElementById('tabel-siswa');
+        siswa.forEach((s, index) => {
+            let keterangan = s.nilai > 60 ? 'Lulus' : 'Tidak Lulus';
+            let gradeData = getGrade(s.nilai);
+
+            let row = `
+                <tr>
+                    <td>${index + 1}</td>
+                    <td>${s.nama}</td>
+                    <td>${s.nilai}</td>
+                    <td>${keterangan}</td>
+                    <td>${gradeData.grade}</td>
+                    <td>${gradeData.predikat}</td>
+                </tr>
+            `;
+            tabelSiswa.innerHTML += row;
+        });
+    </script>
+</body>
+</html>
